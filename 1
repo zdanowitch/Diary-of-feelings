@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dao Emocji - Droga do Wewnętrznej Równowagi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h1 {
+            color: #2c5530;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .tao-quote {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+            font-size: 0.95em;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            border-color: #4CAF50;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards and Grids */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .grid {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Chips and Pills */
+        .chips-container, .pills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .chip, .pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .chip:hover, .pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .pill[aria-pressed="true"] {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .chip.highlighted {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Forms and Inputs */
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn.danger {
+            background: #f44336;
+        }
+
+        .btn.danger:hover {
+            background: #da190b;
+        }
+
+        .btn.small {
+            padding: 8px 16px;
+            font-size: 0.9em;
+        }
+
+        /* Breathing Exercise */
+        .breathing-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #4CAF50;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+        }
+
+        .breathing-text {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Utility Classes */
+        .muted {
+            color: #666;
+            font-style: italic;
+        }
+
+        .small {
+            font-size: 0.85em;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                min-width: auto;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        /* Water Flow Animation */
+        .water-flow {
+            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: flow 3s ease-in-out infinite;
+        }
+
+        @keyframes flow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Dao Emocji</h1>
+            <div class="subtitle">Droga do Wewnętrznej Równowagi</div>
+            <div class="tao-quote">
+                "Pozwól wodzie emocji płynąć swobodnie, a znajdziesz spokój w jej głębi."
+                <br><span class="small">- Mądrość Tao w praktyce emocjonalnej</span>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab active" data-tab="emocje">🌊 Emocje</button>
+            <button class="tab" data-tab="lista">📖 Lista Uczuć</button>
+            <button class="tab" data-tab="potrzeby">💫 Potrzeby</button>
+            <button class="tab" data-tab="mapowanie">🔄 Mapowanie</button>
+            <button class="tab" data-tab="oddech">🧘 Oddech</button>
+            <button class="tab" data-tab="dziennik">📓 Dziennik</button>
+        </nav>
+
+        <!-- Sekcja Emocje -->
+        <section id="emocje" class="section active">
+            <div class="card">
+                <h2>Obszary Emocjonalne</h2>
+                <div id="areaPills" class="pills-container"></div>
+            </div>
+            
+            <div class="card">
+                <h2>Wyszukaj Uczucia</h2>
+                <input type="text" id="searchFeel" placeholder="Szukaj uczucia... 🌈">
+            </div>
+            
+            <div class="card">
+                <h2>Twoje Uczucia</h2>
+                <div id="feelList" class="chips-container"></div>
+            </div>
+        </section>
+
+        <!-- Sekcja Lista -->
+        <section id="lista" class="section">
+            <div class="card">
+                <h2>Pełna Lista Uczuć</h2>
+                <div class="row">
+                    <select id="selArea">
+                        <option value="">Wszystkie obszary</option>
+                    </select>
+                    <select id="selSort">
+                        <option value="abc">Sortuj A-Z</option>
+                        <option value="area">Sortuj wg obszaru</option>
+                    </select>
+                    <input type="text" id="searchList" placeholder="Szukaj...">
+                </div>
+                <div id="tbl" style="margin-top: 20px;"></div>
+            </div>
+        </section>
+
+        <!-- Sekcja Potrzeby -->
+        <section id="potrzeby" class="section">
+            <div class="card">
+                <h2>Kategorie Potrzeb</h2>
+                <div id="needsCats" class="pills-container"></div>
+            </div>
+            
+            <div class="card">
+                <h2>Twoje Potrzeby</h2>
+                <div id="needsList" class="chips-container"></div>
+            </div>
+        </section>
+
+        <!-- Sekcja Mapowanie -->
+        <section id="mapowanie" class="section">
+            <div class="card">
+                <h2>Emocje → Potrzeby</h2>
+                <p class="muted">Kliknij "Dostosuj", aby personalizować mapowania w duchu Tao</p>
+                <div id="mapBox"></div>
+            </div>
+        </section>
+
+        <!-- Sekcja Oddech -->
+        <section id="oddech" class="section">
+            <div class="card" style="text-align: center;">
+                <h2>Praktyka Oddechu Wu Wei</h2>
+                <p class="muted">"Najdoskonalsi oddychają jak niemowlęta" - Laozi</p>
+                
+                <div class="breathing-circle">
+                    <span class="breathing-text">Kliknij Start</span>
+                </div>
+                
+                <button class="btn" id="startBreathing">Rozpocznij 1-minutową praktykę</button>
+                <button class="btn" id="stopBreathing" style="display: none;">Zatrzymaj</button>
+                
+                <div style="margin-top: 30px;">
+                    <h3>Cykl Oddechowy 4-7-8</h3>
+                    <p>Wdychaj przez 4 sekundy → Wstrzymaj 7 sekund → Wydychaj 8 sekund</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja Dziennik -->
+        <section id="dziennik" class="section">
+            <div class="card">
+                <h2>Dziennik Emocjonalny</h2>
+                <form id="formJ">
+                    <div style="margin-bottom: 15px;">
+                        <label>Sytuacja:</label>
+                        <textarea name="sytuacja" placeholder="Opisz sytuację, która wywołała emocje..."></textarea>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Myśli:</label>
+                        <textarea name="mysli" placeholder="Jakie myśli pojawiły się w tej sytuacji?"></textarea>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Uczucia:</label>
+                        <input type="text" name="uczucia" placeholder="Wymień odczuwane emocje (oddziel przecinkami)">
+                    </div>
+                    <button type="submit" class="btn">Zapisz wpis 🌿</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Twoje Wpisy</h2>
+                <button class="btn" id="analyzePatterns">Analiza Wzorców</button>
+                <button class="btn danger" id="btnClear">Wyczyść wszystkie</button>
+                <div id="logs" style="margin-top: 20px;"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // --- DANE W DUCHU TAO ---
+        const AREAS = {
+            "Podstawowe": ["Szczęście", "Smutek", "Złość", "Strach", "Zaskoczenie", "Obrzydzenie", "Spokój", "Ekscytacja"],
+            "Złożone": ["Duma", "Wstyd", "Zazdrość", "Wina", "Miłość", "Nadzieja", "Rozczarowanie", "Wdzięczność"],
+            "Relacyjne": ["Bliskość", "Samotność", "Tęsknota", "Współczucie", "Zaufanie", "Zdrada", "Przynależność"],
+            "Energetyczne": ["Entuzjazm", "Znużenie", "Pobudzenie", "Odpoczynek", "Równowaga", "Nierównowaga"]
+        };
+
+        const NEEDS = {
+            "Fizyczne": ["Odpoczynek", "Sen", "Ruch", "Powietrze", "Woda", "Pożywienie", "Bezpieczeństwo fizyczne", "Zdrowie", "Schronienie"],
+            "Autonomia": ["Wybór", "Sprawczość", "Sens", "Kierunek", "Czas dla siebie", "Granice", "Autentyczność"],
+            "Relacje": ["Bliskość", "Zaufanie", "Wsparcie", "Zrozumienie", "Wysłuchanie", "Współpraca", "Przynależność", "Miłość"],
+            "Ekspresja / Duchowe": ["Wyrażanie siebie", "Kreatywność", "Radość", "Kontakt ze sobą", "Uważność", "Spójność", "Harmonia", "Rytuał"],
+            "Rozwój": ["Nauka", "Mistrzostwo", "Kompetencje", "Wyzwanie", "Feedback", "Sens pracy", "Uznanie"]
+        };
+
+        const EMO2NEEDS = {
+            "Lęk": ["Bezpieczeństwo fizyczne", "Wsparcie", "Zrozumienie"],
+            "Smutek": ["Wysłuchanie", "Bliskość", "Odpoczynek"],
+            "Złość": ["Granice", "Sprawczość", "Uznanie"],
+            "Wstyd": ["Akceptacja", "Zrozumienie", "Przynależność"],
+            "Samotność": ["Kontakt", "Bliskość", "Przynależność"],
+            "Ulga": ["Zaspokojone bezpieczeństwo", "Wsparcie", "Ukojenie"],
+            "Radość": ["Spełnienie", "Uznanie", "Bliskość"],
+            "Gniew": ["Sprawiedliwość", "Szacunek", "Granice"],
+            "Strach": ["Bezpieczeństwo", "Wsparcie", "Pewność"]
+        };
+
+        // --- INICJALIZACJA DODATKOWYCH DANYCH ---
+        let USER_EMO2NEEDS = JSON.parse(localStorage.getItem('user_emo2needs') || '{}');
+        let breathingInterval = null;
+
+        // --- POMOCNICZE FUNKCJE ---
+        const $ = sel => document.querySelector(sel);
+        const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+        function escapeHTML(s) {
+            return (s || '').replace(/[&<>"']/g, c => 
+                ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `card ${type === 'error' ? 'danger' : 'water-flow'}`;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.zIndex = '1000';
+            notification.style.maxWidth = '300px';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // --- SYSTEM ZAKŁADEK ---
+        $$('.tab').forEach(btn => btn.addEventListener('click', () => {
+            $$('.tab').forEach(b => { 
+                b.classList.remove('active'); 
+                b.setAttribute('aria-selected', 'false'); 
+            });
+            $$('.section').forEach(s => s.classList.remove('active'));
+            
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            const id = btn.dataset.tab;
+            $(`#${id}`).classList.add('active');
+        }));
+
+        // --- SEKCJA EMOCJE ---
+        // Przyciski obszarów
+        const areaPills = Object.keys(AREAS).map(a => {
+            const b = document.createElement('button');
+            b.className = 'pill'; 
+            b.textContent = a; 
+            b.setAttribute('aria-pressed', 'false');
+            b.onclick = () => { 
+                b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); 
+                renderFeel(); 
+            };
+            return b;
+        });
+        $('#areaPills').append(...areaPills);
+
+        // Renderowanie uczuć
+        function renderFeel() {
+            const q = $('#searchFeel').value.trim().toLowerCase();
+            const activeAreas = areaPills.filter(p => p.getAttribute('aria-pressed') === 'true').map(p => p.textContent);
+            const out = [];
+            
+            for (const [area, list] of Object.entries(AREAS)) {
+                if (activeAreas.length && !activeAreas.includes(area)) continue;
+                for (const w of list) {
+                    if (q && !w.toLowerCase().includes(q)) continue;
+                    const chip = document.createElement('span');
+                    chip.className = 'chip'; 
+                    chip.textContent = w; 
+                    chip.title = `${area} - kliknij, aby zobaczyć potrzeby`;
+                    chip.onclick = () => connectEmotionToNeeds(w);
+                    out.push(chip);
+                }
+            }
+            
+            $('#feelList').innerHTML = '';
+            if (out.length) {
+                $('#feelList').append(...out);
+            } else {
+                const msg = document.createElement('span');
+                msg.className = 'muted'; 
+                msg.textContent = 'Brak wyników. Zmień filtr lub szukaj inaczej.';
+                $('#feelList').append(msg);
+            }
+        }
+
+        $('#searchFeel').addEventListener('input', renderFeel);
+        renderFeel();
+
+        // --- SEKCJA LISTA ---
+        // Inicjalizacja selectów
+        Object.keys(AREAS).forEach(area => {
+            const opt = document.createElement('option');
+            opt.value = area;
+            opt.textContent = area;
+            $('#selArea').append(opt);
+        });
+
+        function renderTable() {
+            const area = $('#selArea').value;
+            const sort = $('#selSort').value;
+            const q = $('#searchList').value.trim().toLowerCase();
+            const rows = [];
+            
+            for (const [a, list] of Object.entries(AREAS)) {
+                for (const w of list) { 
+                    rows.push({ area: a, word: w }); 
+                }
+            }
+            
+            const filtered = rows.filter(r => 
+                (!area || r.area === area) && 
+                (!q || r.word.toLowerCase().includes(q))
+            );
+            
+            if (sort === 'abc') filtered.sort((x, y) => x.word.localeCompare(y.word, 'pl'));
+            else filtered.sort((x, y) => x.area.localeCompare(y.area, 'pl') || x.word.localeCompare(y.word, 'pl'));
+            
+            const grid = document.createElement('div');
+            grid.className = 'grid';
+            
+            filtered.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const smallMuted = document.createElement('div');
+                smallMuted.className = 'small muted'; 
+                smallMuted.textContent = r.area;
+                const wordDiv = document.createElement('div');
+                wordDiv.textContent = r.word;
+                wordDiv.style.cursor = 'pointer';
+                wordDiv.onclick = () => connectEmotionToNeeds(r.word);
+                wordDiv.title = 'Kliknij, aby zobaczyć potrzeby';
+                card.append(smallMuted, wordDiv);
+                grid.append(card);
+            });
+            
+            $('#tbl').innerHTML = '';
+            if (filtered.length) {
+                $('#tbl').append(grid);
+            } else {
+                const msg = document.createElement('span');
+                msg.className = 'muted'; 
+                msg.textContent = 'Nic nie znaleziono. Spróbuj innych kryteriów.';
+                $('#tbl').append(msg);
+            }
+        }
+
+        $('#selArea').addEventListener('change', renderTable);
+        $('#selSort').addEventListener('change', renderTable);
+        $('#searchList').addEventListener('input', renderTable);
+        renderTable();
+
+        // --- SEKCJA POTRZEBY ---
+        const needsCats = Object.keys(NEEDS);
+        const needsButtons = needsCats.map(c => {
+            const b = document.createElement('button');
+            b.className = 'pill'; 
+            b.textContent = c; 
+            b.setAttribute('aria-pressed', 'false');
+            b.onclick = () => { selectNeed(c); };
+            return b;
+        });
+        $('#needsCats').append(...needsButtons);
+
+        function selectNeed(c) {
+            needsButtons.forEach(b => b.setAttribute('aria-pressed', b.textContent === c ? 'true' : 'false'));
+            const list = NEEDS[c] || [];
+            $('#needsList').innerHTML = '';
+            list.forEach(x => {
+                const chip = document.createElement('span');
+                chip.className = 'chip'; 
+                chip.textContent = x;
+                chip.onclick = () => {
+                    chip.classList.toggle('highlighted');
+                };
+                $('#needsList').append(chip);
+            });
+        }
+        selectNeed(needsCats[0]);
+
+        // --- MAPOWANIE EMOCJE → POTRZEBY ---
+        function renderMap() {
+            const mapBox = $('#mapBox');
+            mapBox.innerHTML = '';
+            
+            // Połącz domyślne z personalizowanymi
+            const allMappings = {...EMO2NEEDS, ...USER_EMO2NEEDS};
+            
+            Object.entries(allMappings).forEach(([emo, arr]) => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                div.style.marginBottom = '15px';
+                
+                const header = document.createElement('div');
+                header.className = 'row';
+                header.style.alignItems = 'center';
+                header.style.marginBottom = '10px';
+                
+                const strong = document.createElement('strong');
+                strong.textContent = emo;
+                strong.style.fontSize = '1.1em';
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn small';
+                editBtn.textContent = 'Dostosuj';
+                editBtn.style.marginLeft = 'auto';
+                editBtn.onclick = () => editMapping(emo, arr);
+                
+                header.append(strong, editBtn);
+                
+                const needsDiv = document.createElement('div');
+                needsDiv.innerHTML = `<span class="muted">Potrzeby:</span> ${arr.join(', ')}`;
+                
+                div.append(header, needsDiv);
+                mapBox.append(div);
+            });
+        }
+
+        function editMapping(emotion, currentNeeds) {
+            const newNeeds = prompt(
+                `Dostosuj potrzeby dla emocji "${emotion}":`,
+                currentNeeds.join(', ')
+            );
+            
+            if (newNeeds !== null) {
+                const needsArray = newNeeds.split(',').map(n => n.trim()).filter(n => n);
+                USER_EMO2NEEDS[emotion] = needsArray;
+                localStorage.setItem('user_emo2needs', JSON.stringify(USER_EMO2NEEDS));
+                renderMap();
+                showNotification('Mapowanie zaktualizowane w duchu Tao 🌿');
+            }
+        }
+
+        renderMap();
+
+        // --- PŁYNNE POŁĄCZENIE EMOCJI Z POTRZEBAMI ---
+        function connectEmotionToNeeds(emotion) {
+            // Przełącz na zakładkę potrzeb
+            $$('.tab').forEach(b => { 
+                b.classList.remove('active'); 
+                b.setAttribute('aria-selected', 'false'); 
+            });
+            $('#potrzeby').classList.add('active');
+            $('[data-tab="potrzeby"]').classList.add('active');
+            $('[data-tab="potrzeby"]').setAttribute('aria-selected', 'true');
+            
+            // Znajdź i podświetl odpowiednie potrzeby
+            const needs = EMO2NEEDS[emotion] || USER_EMO2NEEDS[emotion] || [];
+            highlightNeeds(needs);
+            
+            showNotification(`Emocja "${emotion}" → skup się na tych potrzebach: ${needs.join(', ')}`);
+        }
+
+        function highlightNeeds(needsList) {
+            // Najpierw wyczyść wszystkie podświetlenia
+            $$('#needsList .chip').forEach(chip => {
+                chip.classList.remove('highlighted');
+            });
+            
+            // Podświetl pasujące potrzeby
+            $$('#needsList .chip').forEach(chip => {
+                if (needsList.includes(chip.textContent)) {
+                    chip.classList.add('highlighted');
+                    // Przewiń do podświetlonej potrzeby
+                    chip.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        }
+
+        // --- PRAKTYKA ODDECHU ---
+        $('#startBreathing').addEventListener('click', startBreathingExercise);
+        $('#stopBreathing').addEventListener('click', stopBreathingExercise);
+
+        function startBreathingExercise() {
+            const circle = $('.breathing-circle');
+            const text = $('.breathing-text');
+            let phase = 0;
+            const phases = [
+                { scale: 1.3, text: "Wdychaj...", duration: 4000 },
+                { scale: 1.3, text: "Wstrzymaj...", duration: 7000 },
+                { scale: 1, text: "Wydychaj...", duration: 8000 },
+                { scale: 1, text: "Wstrzymaj...", duration: 4000 }
+            ];
+
+            $('#startBreathing').style.display = 'none';
+            $('#stopBreathing').style.display = 'inline-block';
+
+            function nextPhase() {
+                const current = phases[phase % phases.length];
+                circle.style.transform = `scale(${current.scale})`;
+                text.textContent = current.text;
+                
+                phase++;
+            }
+
+            nextPhase();
+            breathingInterval = setInterval(nextPhase, 23000); // Cały cykl: 4+7+8+4=23s
+
+            // Zatrzymaj po ~1 minucie (3 pełne cykle)
+            setTimeout(() => {
+                if (breathingInterval) {
+                    stopBreathingExercise();
+                    showNotification('Praktyka oddechu zakończona. Wracaj z odświeżonym umysłem. 🍃');
+                }
+            }, 69000);
+        }
+
+        function stopBreathingExercise() {
+            if (breathingInterval) {
+                clearInterval(breathingInterval);
+                breathingInterval = null;
+            }
+            
+            const circle = $('.breathing-circle');
+            const text = $('.breathing-text');
+            
+            circle.style.transform = 'scale(1)';
+            text.textContent = 'Gotowe 🕊️';
+            
+            $('#startBreathing').style.display = 'inline-block';
+            $('#stopBreathing').style.display = 'none';
+        }
+
+        // --- SYSTEM DZIENNIKA ---
+        function loadLogs() {
+            const all = JSON.parse(localStorage.getItem('dz_logs') || '[]');
+            const logs = $('#logs');
+            logs.innerHTML = '';
+            
+            if (!all.length) {
+                const msg = document.createElement('span');
+                msg.className = 'muted'; 
+                msg.textContent = 'Brak wpisów. Zacznij od pierwszego wpisu w dzienniku.';
+                logs.append(msg);
+                return;
+            }
+            
+            all.forEach((r, i) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'small muted'; 
+                dateDiv.textContent = new Date(r.t).toLocaleString('pl-PL');
+                
+                const sitDiv = document.createElement('div');
+                sitDiv.innerHTML = '<strong>Sytuacja:</strong> ' + escapeHTML(r.s);
+                
+                const mysliDiv = document.createElement('div');
+                mysliDiv.innerHTML = '<strong>Myśli:</strong> ' + escapeHTML(r.m);
+                
+                const uczDiv = document.createElement('div');
+                uczDiv.innerHTML = '<strong>Uczucia:</strong> ' + escapeHTML(r.u);
+                
+                const row = document.createElement('div');
+                row.className = 'row';
+                row.style.marginTop = '10px';
+                row.style.justifyContent = 'flex-end';
+                
+                const delBtn = document.createElement('button');
+                delBtn.className = 'btn danger small'; 
+                delBtn.textContent = 'Usuń';
+                delBtn.onclick = () => delLog(i);
+                
+                row.append(delBtn);
+                card.append(dateDiv, sitDiv, mysliDiv, uczDiv, row);
+                logs.append(card);
+            });
+        }
+
+        function delLog(i) {
+            if (confirm('Usunąć ten wpis?')) {
+                const all = JSON.parse(localStorage.getItem('dz_logs') || '[]');
+                all.splice(i, 1);
+                localStorage.setItem('dz_logs', JSON.stringify(all));
+                loadLogs();
+                showNotification('Wpis usunięty');
+            }
+        }
+
+        $('#formJ').addEventListener('submit', e => {
+            e.preventDefault();
+            const fd = new FormData(e.target);
+            const rec = { 
+                t: Date.now(), 
+                s: fd.get('sytuacja').trim(), 
+                m: fd.get('mysli').trim(), 
+                u: fd.get('uczucia').trim() 
+            };
+            
+            if (!rec.s || !rec.m || !rec.u) {
+                showNotification('Wypełnij wszystkie pola', 'error');
+                return;
+            }
+            
+            const all = JSON.parse(localStorage.getItem('dz_logs') || '[]');
+            all.unshift(rec);
+            localStorage.setItem('dz_logs', JSON.stringify(all));
+            e.target.reset();
+            loadLogs();
+            showNotification('Wpis zapisany lokalnie 🌱');
+        });
+
+        $('#btnClear').addEventListener('click', () => {
+            if (confirm('Usunąć wszystkie wpisy? Ta akcja jest nieodwracalna.')) {
+                localStorage.removeItem('dz_logs');
+                loadLogs();
+                showNotification('Wszystkie wpisy usunięte');
+            }
+        });
+
+        // --- ANALIZA WZORCÓW ---
+        $('#analyzePatterns').addEventListener('click', showPatternAnalysis);
+
+        function showPatternAnalysis() {
+            const all = JSON.parse(localStorage.getItem('dz_logs') || '[]');
+            if (all.length < 3) {
+                showNotification('Potrzebujesz przynajmniej 3 wpisów do analizy wzorców', 'error');
+                return;
+            }
+            
+            // Analiza częstości emocji
+            const emotionCount = {};
+            all.forEach(entry => {
+                const emotions = entry.u.split(',').map(e => e.trim()).filter(e => e);
+                emotions.forEach(emotion => {
+                    emotionCount[emotion] = (emotionCount[emotion] || 0) + 1;
+                });
+            });
+            
+            const mostCommon = Object.entries(emotionCount)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 8);
+            
+            // Analiza wzorców czasowych (prosta)
+            const hourlyPattern = {};
+            all.forEach(entry => {
+                const hour = new Date(entry.t).getHours();
+                hourlyPattern[hour] = (hourlyPattern[hour] || 0) + 1;
+            });
+            
+            const mostCommonHour = Object.entries(hourlyPattern)
+                .sort((a, b) => b[1] - a[1])[0];
+            
+            const analysis = document.createElement('div');
+            analysis.className = 'card water-flow';
+            analysis.innerHTML = `
+                <h3>🌊 Twoje Wzorce Emocjonalne</h3>
+                <div style="margin: 15px 0;">
+                    <h4>Najczęstsze emocje:</h4>
+                    <div class="chips-container">
+                        ${mostCommon.map(([emotion, count]) => 
+                            `<span class="chip" onclick="connectEmotionToNeeds('${emotion}')">
+                                ${emotion} (${count})
+                            </span>`
+                        ).join('')}
+                    </div>
+                </div>
+                
+                ${mostCommonHour ? `
+                <div style="margin: 15px 0;">
+                    <h4>Aktywność dziennikowa:</h4>
+                    <p>Najczęściej piszesz o <strong>${mostCommonHour[0]}:00</strong> (${mostCommonHour[1]} wpisów)</p>
+                </div>
+                ` : ''}
+                
+                <div class="tao-quote" style="margin-top: 15px;">
+                    <strong>Mądrość Tao:</strong><br>
+                    "Obserwując swoje wzorce, poznajesz siebie.<br>
+                    Poznając siebie, rozumiesz naturę emocji.<br>
+                    Rozumiejąc naturę emocji, znajdujesz spokój."
+                </div>
+            `;
+            
+            $('#logs').prepend(analysis);
+            analysis.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- INICJALIZACJA ---
+        loadLogs();
+        showNotification('Witaj na Drodze Dao Emocji 🌿');
+
+        // Dodaj obsługę klawiszy dla płynnej nawigacji
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey) {
+                switch(e.key) {
+                    case '1': $$('.tab')[0].click(); break;
+                    case '2': $$('.tab')[1].click(); break;
+                    case '3': $$('.tab')[2].click(); break;
+                    case '4': $$('.tab')[3].click(); break;
+                    case '5': $$('.tab')[4].click(); break;
+                    case '6': $$('.tab')[5].click(); break;
+                }    
+            }
+        });
+    </script>
+</body>
+</html>
